@@ -8,8 +8,9 @@ export function TicketFactory(sequelize) {
             autoIncrement: true,
             primaryKey: true,
         },
-        name: {
+        title: {
             type: DataTypes.STRING,
+            field: 'title',
             allowNull: false,
         },
         status: {
@@ -22,6 +23,7 @@ export function TicketFactory(sequelize) {
         },
         assignedUserId: {
             type: DataTypes.INTEGER,
+            field: 'assigneduser_id',
             allowNull: true,
         },
     }, {

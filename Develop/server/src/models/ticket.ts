@@ -3,7 +3,7 @@ import { User } from './user';
 
 interface TicketAttributes {
   id: number;
-  name: string;
+  title: string;
   status: string;
   description: string;
   assignedUserId?: number;
@@ -13,7 +13,7 @@ interface TicketCreationAttributes extends Optional<TicketAttributes, 'id'> {}
 
 export class Ticket extends Model<TicketAttributes, TicketCreationAttributes> implements TicketAttributes {
   public id!: number;
-  public name!: string;
+  public title!: string;
   public status!: string;
   public description!: string;
   public assignedUserId!: number;
@@ -33,8 +33,9 @@ export function TicketFactory(sequelize: Sequelize): typeof Ticket {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      title: {
         type: DataTypes.STRING,
+        field: 'title',
         allowNull: false,
       },
       status: {
@@ -47,6 +48,7 @@ export function TicketFactory(sequelize: Sequelize): typeof Ticket {
       },
       assignedUserId: {
         type: DataTypes.INTEGER,
+        field: 'assigneduser_id',
         allowNull: true,
       },
     },
