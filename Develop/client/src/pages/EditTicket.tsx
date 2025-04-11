@@ -55,7 +55,7 @@ const EditTicket = () => {
               <textarea
                 id='tName'
                 name='name'
-                value={ticket.name || ''}
+                value={ticket.title || ''}
                 onChange={handleTextAreaChange}
                 />
               <label htmlFor='tStatus'>Ticket Status</label>
@@ -65,7 +65,7 @@ const EditTicket = () => {
                 value={ticket.status || ''}
                 onChange={handleChange}
               >
-                <option  value='Todo'>Todo</option>
+                <option  value='To Do'>To Do</option>
                 <option  value='In Progress'>In Progress</option>
                 <option  value='Done'>Done</option>
             </select>

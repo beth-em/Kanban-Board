@@ -25,7 +25,7 @@ const TicketCard = ({ ticket, deleteTicket }: TicketCardProps) => {
 
   return (
     <div className='ticket-card'>
-      <h3>{ticket.name}</h3>
+      <h3>{ticket.title}</h3>
       <p>{ticket.description}</p>
       <p>{ticket.assignedUser?.username}</p>
       <Link to='/edit' state={{id: ticket.id}} type='button' className='editBtn'>Edit</Link>

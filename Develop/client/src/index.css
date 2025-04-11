@@ -115,8 +115,16 @@ tbody tr:nth-child(odd) {
 }
 
 .nav-link {
+  padding: 0.6rem 1.2em;
+  margin-left: 1em;
+  font-weight: 500;
+  border-radius: 8px;
+  background-color: #1a1a1a;
   color: #fff;
+  border: none;
   text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .active {
@@ -147,15 +155,15 @@ tbody tr:nth-child(odd) {
 }
 
 .todo {
-  background-color: #e9cbec;
+  background-color: #9374cb;
 }
 
 .inprogress {
-  background-color: #b864c4;
+  background-color: #9f75c4;
 }
 
 .done {
-  background-color: #732381;
+  background-color: #6b377e;
 }
 
 .ticket-card {
@@ -181,10 +189,12 @@ tbody tr:nth-child(odd) {
 
 
 .form {
-  width: 60%;
+  width: 350px;
   height: 80%;
-  background-color: #b864c4;
-  margin: auto;
+  background-color: #531260;
+  box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -192,7 +202,7 @@ tbody tr:nth-child(odd) {
 }
 
 .form > h1, .form > label {
-  color: yellow;
+  color: rgb(200, 200, 46);
 }
 
 .form > input {
@@ -237,9 +247,12 @@ tbody tr:nth-child(odd) {
 
 .login-notice {
   display: flex;
-  width: 100%;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 80vh;
+  color: #080008;
+  background-color: #d7bfd6;
+  font-size: 1.5rem;
 }
 
 

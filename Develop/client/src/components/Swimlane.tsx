@@ -11,7 +11,7 @@ interface SwimlaneProps {
 const Swimlane = ({ title, tickets, deleteTicket }: SwimlaneProps) => {
   const getStatusClass = (status: string) => {
     switch (status) {
-      case 'Todo':
+      case 'To Do':
         return 'swim-lane todo';
       case 'In Progress':
         return 'swim-lane inprogress';

@@ -21,11 +21,12 @@ const Navbar = () => {
       {loginCheck ? (
         <>
           <li className='nav-item'>
-            <Link to='/new-ticket'>New Ticket</Link>
+            <Link to='/new-ticket' className='nav-link'>New Ticket</Link>
           </li>
           <li className='nav-item'>
             <button 
-              type='button'  
+              type='button'
+              className='nav-link'  
               onClick={() => {
                 auth.logout();
               }}
@@ -36,7 +37,7 @@ const Navbar = () => {
         </>
       ) : (
         <li className='nav-item'>
-          <Link to='/login'>Login</Link>
+          <Link to='/login' className='nav-link'>Login</Link>
         </li>
       )}
     </ul>
