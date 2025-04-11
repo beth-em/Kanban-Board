@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 
 const retrieveTickets = async () => {
   try {
+    console.log("Using token:", Auth.getToken());
     const response = await fetch(
       '/api/tickets/',
       {

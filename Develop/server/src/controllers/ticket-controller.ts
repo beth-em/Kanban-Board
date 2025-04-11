@@ -3,7 +3,9 @@ import { Ticket } from '../models/ticket.js';
 import { User } from '../models/user.js';
 
 // GET /tickets
-export const getAllTickets = async (_req: Request, res: Response) => {
+export const getAllTickets = async (req: Request, res: Response) => {
+  console.log('Authenticated user:', req.user);  // Added log to show decoded token
+
   try {
     const tickets = await Ticket.findAll({
       include: [
@@ -16,6 +18,7 @@ export const getAllTickets = async (_req: Request, res: Response) => {
     });
     res.json(tickets);
   } catch (error: any) {
+    console.error('Ticket retrieval failed:', error); // Added error log
     res.status(500).json({ message: error.message });
   }
 };

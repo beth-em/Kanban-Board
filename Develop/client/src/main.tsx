@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <EditTicket />
       },
       {
-        path: '/create',
+        path: '/new-ticket',
         element: <CreateTicket />
       },
       {

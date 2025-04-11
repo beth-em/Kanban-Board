@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import auth from '../utils/auth';
 
 const Navbar = () => {
   const [ loginCheck, setLoginCheck ] = useState(false);
+  const location = useLocation();
 
-  const checkLogin = () => {
-    if(auth.loggedIn()) {
-      setLoginCheck(true);
-    }
-  };
 
   useEffect(() => {
-    console.log(loginCheck);
-    checkLogin();
-  }, [loginCheck])
+    setLoginCheck(auth.loggedIn());
+  }, [location]);
 
   return (
     <div className='nav'>
@@ -22,24 +18,30 @@ const Navbar = () => {
         <Link to='/'>Krazy Kanban Board</Link>
       </div>
       <ul>
-      {
-        !loginCheck ? (
+      {loginCheck ? (
+        <>
           <li className='nav-item'>
-            <button type='button'>
-              <Link to='/login'>Login</Link>
+            <Link to='/new-ticket'>New Ticket</Link>
+          </li>
+          <li className='nav-item'>
+            <button 
+              type='button'  
+              onClick={() => {
+                auth.logout();
+              }}
+            >
+              Logout
             </button>
           </li>
-        ) : (
-          <li className='nav-item'>
-            <button type='button' onClick={() => {
-              auth.logout();
-            }}>Logout</button>
-          </li>
-        )
-      }
-      </ul>
-    </div>
-  )
-}
+        </>
+      ) : (
+        <li className='nav-item'>
+          <Link to='/login'>Login</Link>
+        </li>
+      )}
+    </ul>
+  </div>
+  );
+};
 
 export default Navbar;
