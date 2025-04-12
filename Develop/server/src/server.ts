@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,6 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const forceDatabaseRefresh = false;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Middleware to parse JSON
@@ -18,7 +21,7 @@ app.use(express.json());
 app.use(routes);
 
 // Serves static files in the entire client's dist folder
-const staticPath = path.join(process.cwd(), 'client', 'dist');
+const staticPath = path.join(__dirname, '../../client/dist');
 app.use(express.static(staticPath));
 // Log for render debugging
 console.log('Serving static files from:', staticPath);
