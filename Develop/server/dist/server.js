@@ -13,12 +13,12 @@ const __dirname = path.dirname(__filename);
 // Middleware to parse JSON
 app.use(express.json());
 // Serves static files in the entire client's dist folder
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../../../client/dist')));
 // API routes
 app.use(routes);
 // Catch all handler to serve React's index.html for any other requests
 app.get('*', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+    res.sendFile(path.join(__dirname, '../../../client/dist', 'index.html'));
 });
 // Synch models and start server
 sequelize.sync({ force: forceDatabaseRefresh }).then(() => {
