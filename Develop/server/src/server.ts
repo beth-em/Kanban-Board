@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(routes);
 
 // Serves static files in the entire client's dist folder
-const staticPath = path.join(process.cwd(), 'Develop', 'client', 'dist');
+const staticPath = path.join(process.cwd(), 'client', 'dist');
 app.use(express.static(staticPath));
 // Log for render debugging
 console.log('Serving static files from:', staticPath);
