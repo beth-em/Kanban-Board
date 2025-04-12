@@ -2,7 +2,6 @@ import path from 'path';
 import express from 'express';
 import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
-import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,21 +9,23 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const forceDatabaseRefresh = false;
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 
 // Middleware to parse JSON
 app.use(express.json());
 
-// Serves static files in the entire client's dist folder
-app.use(express.static(path.join(__dirname, '../../../client/dist')));
-
 // API routes
 app.use(routes);
 
+// Serves static files in the entire client's dist folder
+const staticPath = path.join(process.cwd(), 'client/dist');
+app.use(express.static(staticPath));
+// Log for render debugging
+console.log('Serving static files from:', staticPath);
+
 // Catch all handler to serve React's index.html for any other requests
 app.get('*', (_req, res) => {
-  res.sendFile(path.join(__dirname, '../../../client/dist', 'index.html'));
+  res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 // Synch models and start server
