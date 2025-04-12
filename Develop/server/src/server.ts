@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,6 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const forceDatabaseRefresh = false;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware to parse JSON
 app.use(express.json());
