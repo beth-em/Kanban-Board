@@ -4,21 +4,30 @@ import routes from './routes/index.js';
 import { sequelize } from './models/index.js';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const forceDatabaseRefresh = false;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+// Allow request from localhost:3000
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+}));
 // Middleware to parse JSON
 app.use(express.json());
-// Serves static files in the entire client's dist folder
-app.use(express.static(path.join(__dirname, '../../../client/dist')));
 // API routes
 app.use(routes);
+// Serves static files in the entire client's dist folder
+const staticPath = path.join(__dirname, '../../client/dist');
+app.use(express.static(staticPath));
+// Log for render debugging
+console.log('Serving static files from:', staticPath);
 // Catch all handler to serve React's index.html for any other requests
 app.get('*', (_req, res) => {
-    res.sendFile(path.join(__dirname, '../../../client/dist', 'index.html'));
+    res.sendFile(path.join(staticPath, 'index.html'));
 });
 // Synch models and start server
 sequelize.sync({ force: forceDatabaseRefresh }).then(() => {

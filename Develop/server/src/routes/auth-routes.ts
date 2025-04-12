@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { User } from '../models/user.js';
 import jwt from 'jsonwebtoken';
-// import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   // TODO: If the user exists and the password is correct, return a JWT token
@@ -16,15 +16,19 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Function to compare hashed password
-    const isMatch = password === user.password; // Temporary login logic
-    // const isMatch = await bcrypt.compare(password, user.password);
+    //const isMatch = password === user.password; // Temporary login logic
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Attempting login for:", username);
+    console.log("Password entered:", password);
+    console.log("Stored hashed password in DB:", user.password);
+    console.log("Password match result:", isMatch);
 
     if (!isMatch) {
      res.status(401).json({ message: 'Invalid username or password' });
      return;
     }
 
-    // Create and sign JWT
+    // Create and return JWT
     const token = jwt.sign(
       { username: user.username },
       process.env.JWT_SECRET_KEY as string,

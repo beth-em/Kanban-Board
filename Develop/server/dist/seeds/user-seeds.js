@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { User } from '../models/user.js';
 export const seedUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     yield User.bulkCreate([
+        { username: 'testuser', password: 'password123' },
         { username: 'JollyGuru', password: 'password' },
         { username: 'SunnyScribe', password: 'password' },
         { username: 'RadiantComet', password: 'password' },
