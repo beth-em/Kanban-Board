@@ -68,4 +68,4 @@ This project is licensed under the MIT license.
 
 ## Links
 Github Repo: https://github.com/beth-em/Kanban-Board.git
-Deployment Link:
+Deployment Link: https://kanban-board-zoeu.onrender.com
