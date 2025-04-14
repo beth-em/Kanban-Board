@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 // Allow request from localhost:3000
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://kanban-board-zoeu.onrender.com'],
   credentials: true,
 }));
 

@@ -1,13 +1,12 @@
 import { TicketData } from '../interfaces/TicketData';
 import { ApiMessage } from '../interfaces/ApiMessage';
+import API_BASE_URL from './config';
 import Auth from '../utils/auth';
 
 const retrieveTickets = async () => {
   try {
     console.log("Using token:", Auth.getToken());
-    const response = await fetch(
-      '/api/tickets/',
-      {
+    const response = await fetch(`${API_BASE_URL}/api/tickets/`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${Auth.getToken()}`
@@ -30,7 +29,7 @@ const retrieveTickets = async () => {
 const retrieveTicket = async (id: number | null): Promise<TicketData> => {
   try {
     const response = await fetch(
-      `/api/tickets/${id}`,
+      `${API_BASE_URL}/api/tickets/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +53,7 @@ const retrieveTicket = async (id: number | null): Promise<TicketData> => {
 const createTicket = async (body: TicketData) => {
   try {
     const response = await fetch(
-      '/api/tickets/', {
+      `${API_BASE_URL}/api/tickets/`, {
         method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -81,7 +80,7 @@ const createTicket = async (body: TicketData) => {
 const updateTicket = async (ticketId: number, body: TicketData): Promise<TicketData> => {
   try {
     const response = await fetch(
-      `/api/tickets/${ticketId}`, {
+      `${API_BASE_URL}/api/tickets/${ticketId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +105,7 @@ const updateTicket = async (ticketId: number, body: TicketData): Promise<TicketD
 const deleteTicket = async (ticketId: number): Promise<ApiMessage> => {
   try {
     const response = await fetch(
-      `/api/tickets/${ticketId}`, {
+      `${API_BASE_URL}/api/tickets/${ticketId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
